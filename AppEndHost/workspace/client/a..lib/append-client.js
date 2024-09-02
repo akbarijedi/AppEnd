@@ -74,7 +74,9 @@ var shared = {
 
     enum(parentId) { return getBiItemsByParentId(parentId); },
     getBiItemsByParentId(parentId) { return getBiItemsByParentId(parentId); },
-    getBiItemsByParentShortName(parentShortName) { return getBiItemsByParentShortName(parentShortName); }
+    getBiItemsByParentShortName(parentShortName) { return getBiItemsByParentShortName(parentShortName); },
+
+    truncateString(str, maxLength) { return truncateString(str, maxLength); }
 
 };
 
@@ -312,9 +314,15 @@ function openComponent(src, options) {
             m.addEventListener('shown.bs.modal', () => {
                 $("#c_" + options.id).attr("data-ae-ready", "true");
                 $(`.scrollable`).overlayScrollbars({});
+                m.focus();
             });
             m.addEventListener('hidden.bs.modal', event => {
-                setTimeout(function () { m.remove(); }, 1000);
+                setTimeout(function () {
+                    m.remove();
+                    setTimeout(function () {
+                        $(".modal:last").focus();
+                    }, 50);
+                }, 200);
             });
             mdl.show();
         });

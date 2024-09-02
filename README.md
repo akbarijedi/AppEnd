@@ -106,4 +106,3 @@ For more information about AppEnd go to documentation [wiki](https://github.com/
 To support me you can  
 1- Participate in development  
 2- Donate  
-
